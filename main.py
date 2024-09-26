@@ -1,16 +1,21 @@
+import random
+
 def gen(fsa):
     # given some fsa, we need to make sure we generate a valid word in the language
     word = ""
     current = "A"
-    print(type(len(fsa[1])-1))
-    for i in range(0, len(fsa[1])-1):
-        if fsa[1][i][0] == current:
-            word = word + str(fsa[1][i][2])
-            current = fsa[1][i][1]
+    j = 0
+    rand = 0
 
-
-        if current in fsa[2]:
-            return word
+    while not(current in fsa[2] and rand > 6):
+        if j >= len(fsa[1]):
+            j = 0
+        if fsa[1][j][0] == current:
+            word = word + str(fsa[1][j][2])
+            current = fsa[1][j][1]
+            rand = random.randrange(0, 10, 1)
+        j += 1
+    return word
 
 
 def main():
